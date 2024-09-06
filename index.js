@@ -7,10 +7,12 @@ const quotes = [
     "Daddy cries",
 ]
 
+console.log(Object.keys(cards))
+
 function addCard() {
     const card = document.createElement("div");
     card.classList.add("card");
-    card.innerHTML = `  <h3>Card ${cards.length + 1}</h3>
+    card.innerHTML = `  <h3>Card ${Object.keys(cards).length + 1}</h3>
                         <img src="https://picsum.photos/200/200">
                         <p>${quotes[Math.floor(Math.random() * quotes.length)]}</p>`;
     cards.appendChild(card);
