@@ -4,19 +4,17 @@ const cards = document.getElementById("cards");
 let cardsArray = [];
 async function getQuotes() {
   try {
-    const response = await fetch("api.quotable.io/quotes/random?maxLength=50");
+    const response = await fetch("https://quotes-api-self.vercel.app/quote");
     const data = await response.json();
-    console.log(typeof data);
-    const quotes = data[0].content;
+    const quotes = data.quote;
     console.log(quotes);
+    return quotes;
   } catch (error) {
     console.log(error);
   }
 }
 
-getQuotes();
-
-function addCard() {
+async function addCard() {
   const card = document.createElement("div");
   card.classList.add("card");
   const randomImageUrl = `https://picsum.photos/200/200?random=${Math.floor(
@@ -24,7 +22,7 @@ function addCard() {
   )}`;
   card.innerHTML = `  <h3>Card ${Object.keys(cardsArray).length + 1}</h3>
                         <img src=${randomImageUrl}>
-                        <p>${getQuotes()}</p>`;
+                        <p>${await getQuotes()}</p>`;
   cards.appendChild(card);
   cardsArray.push(card);
 }
@@ -42,12 +40,6 @@ function randomizeArray() {
     cards.appendChild(card);
   });
 }
-
-// function randomizeArray() {
-//   cardsArray.map((card) => {
-//     return Math.floor(Math.random() * cardsArray.indexOf(card));
-//   });
-// }
 
 // addCard.addEventListener("click", () => {
 //   const card = document.createElement("div");
