@@ -7,7 +7,6 @@ async function getQuotes() {
     const response = await fetch("https://quotes-api-self.vercel.app/quote");
     const data = await response.json();
     const quotes = data.quote;
-    console.log(typeof quotes);
     return quotes;
   } catch (error) {
     console.log(error);
@@ -20,11 +19,16 @@ async function addCard() {
   const randomImageUrl = `https://picsum.photos/200/200?random=${Math.floor(
     Math.random() * 1000
   )}`;
-  card.innerHTML = `  <h3>Card ${Object.keys(cardsArray).length + 1}</h3>
+  card.innerHTML = `  <h3>${randomizeName()}</h3>
                         <img src=${randomImageUrl}>
                         <p>${await getQuotes()}</p>`;
   cards.appendChild(card);
   cardsArray.push(card);
+}
+
+function randomizeName() {
+  const nombre = Math.floor(Math.random() * (names.length));
+  return names[nombre];
 }
 
 function randomizeArray() {

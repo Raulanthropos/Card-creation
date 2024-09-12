@@ -13,7 +13,7 @@ body {
 }
 
 #cards {
-  /* max-width: 80%; */
+  max-width: 80%;
   max-height: 300;
   margin: auto;
   display: flex;
