@@ -7,7 +7,7 @@ async function getQuotes() {
     const response = await fetch("https://quotes-api-self.vercel.app/quote");
     const data = await response.json();
     const quotes = data.quote;
-    console.log(quotes);
+    console.log(typeof quotes);
     return quotes;
   } catch (error) {
     console.log(error);
